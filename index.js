@@ -8,7 +8,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(express.json());
+app.use(express.json({ extended: false }));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,7 +28,8 @@ require("./routes/format.routes")(app);
 require("./routes/brewery.routes")(app);
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
