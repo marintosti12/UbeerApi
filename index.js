@@ -17,12 +17,12 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to Ubeer application." });
 });
 
-//require("./routes/beer.routes")(app);
-//require("./routes/format.routes")(app);
-//require("./routes/brewery.routes")(app);
+require("./routes/beer.routes")(app);
+require("./routes/format.routes")(app);
+require("./routes/brewery.routes")(app);
 
 
-const PORT = 5000;
+const PORT = 8080;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
