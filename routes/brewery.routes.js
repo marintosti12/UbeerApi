@@ -5,6 +5,7 @@ module.exports = app => {
 
     router.get("/", breweries.findAll);
     router.get("/:id", breweries.findOne);
+    router.get("/:limit/:offset", breweries.paginate);
 
     app.use('/api/breweries', router);
 };
