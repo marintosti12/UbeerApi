@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 
-var allowedOrigins = ['http://localhost:5000', 'https://app-238342ae-111e-4650-a050-cb6e75802a39.cleverapps.io/'];
+const allowedOrigins = ['https://ubeer-kohl.vercel.app/', 'https://app-238342ae-111e-4650-a050-cb6e75802a39.cleverapps.io/'];
 app.use(cors({
     origin: function(origin, callback){
         // allow requests with no origin
