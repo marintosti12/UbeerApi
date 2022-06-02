@@ -1,16 +1,15 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 
 app.use(express.json({ extended: false }));
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-});
+app.use(cors({
+    origin: '*'
+}));
 
 const db = require("./models");
 
