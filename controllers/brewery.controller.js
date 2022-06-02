@@ -40,6 +40,21 @@ exports.findOne = (req, res) => {
         });
     });
 };
+
+// Retrieve all beers from the database.
+exports.paginate = (req, res) => {
+    Brewery.findAll({ include: Beer , limit: req.params.limit, offset: req.params.offset})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving beers."
+            });
+        });
+};
+
 // Update a Tutorial by the id in the request
 exports.update = (req, res) => {
 

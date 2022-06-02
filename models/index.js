@@ -29,5 +29,4 @@ db.beers.belongsTo(db.brewerys);
 
 //Join between beer and brewery
 
-
 module.exports = db;
