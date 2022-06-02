@@ -7,11 +7,11 @@ app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 
 
-const db = require("./models");
+//const db = require("./models");
 
-db.sequelize.sync({ force: true }).then(() => {
+/*/db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
-});
+});/*/
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Ubeer application." });
