@@ -11,8 +11,6 @@ exports.create = (req, res) => {
         address: req.body.address,
         image: req.body.image,
     };
-
-    console.log(req.body)
     Brewery.create(brewery)
     .then(data => {
         res.send(data);
