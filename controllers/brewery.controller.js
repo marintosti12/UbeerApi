@@ -12,6 +12,7 @@ exports.create = (req, res) => {
         image: req.body.image,
     };
 
+    console.log(req.body)
     Brewery.create(brewery)
     .then(data => {
         res.send(data);
