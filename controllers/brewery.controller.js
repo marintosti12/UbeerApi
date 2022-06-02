@@ -77,15 +77,9 @@ exports.update = (req, res) => {
         where: { id: id }
     })
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Brewery was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Brewery with id=${id}. Maybe Brewery was not found or req.body is empty!`
-            });
-        }
+        res.send({
+            message: "Brewery was updated successfully."
+        });
     })
     .catch(err => {
         res.status(500).send({
@@ -100,18 +94,12 @@ exports.delete = (req, res) => {
         where: { id: id }
     })
     .then(num => {
-        if (num == 1) {
-            res.send({
-                message: "Brewery was deleted successfully!"
-            });
-        } else {
-            res.send({
-                message: `Cannot delete Brewery with id=${id}. Maybe Brewery was not found!`
-            });
-        }
+        res.send({
+            message: "Brewery was deleted successfully!"
+        });
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(404).send({
             message: "Could not delete Brewery with id=" + id
         });
     });
