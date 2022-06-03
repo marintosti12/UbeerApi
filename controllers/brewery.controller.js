@@ -36,6 +36,40 @@ exports.findAll = (req, res) => {
             });
         });
 };
+// Retrieve all beers from the database.
+exports.findAllCities = (req, res) => {
+    Brewery.findAll({attributes: ['city'], group: ['city']})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving beers."
+            });
+        });
+};
+
+// Retrieve all beers from the database.
+exports.findCityByName = (req, res) => {
+    const name = req.params.name;
+
+    Brewery.findAll({where: {
+        city: name
+    }}).then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving beers."
+            });
+        });
+};
+
+
+
+
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
@@ -58,7 +92,15 @@ exports.findOne = (req, res) => {
 
 // Retrieve all beers from the database.
 exports.paginate = (req, res) => {
-    Brewery.findAndCountAll({ include: Beer , limit: req.params.limit, offset: req.params.offset})
+
+    let name = "";
+
+    if (req.query.city !== undefined)
+        name = req.query.city;
+
+    Brewery.findAndCountAll({ include: Beer , limit: req.params.limit, offset: req.params.offset, order: [['name', 'DESC']],  where: {
+            city: { [Op.like]: `%${name}%` },
+        },})
         .then(data => {
             res.send(data);
         })
