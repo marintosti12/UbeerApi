@@ -42,7 +42,6 @@ exports.findAll = (req, res) => {
 // Find a single Beer with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    console.log(id)
     Beer.findOne({ include: Format, where: {id}})
     .then(data => {
         if (data == null) {
