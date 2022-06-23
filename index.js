@@ -1,9 +1,10 @@
 const { auth } = require('express-oauth2-jwt-bearer');
 const app = require('./app');
 const db = require("./models");
+var jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
-
-var jwtCheck = jwt({
+const jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
