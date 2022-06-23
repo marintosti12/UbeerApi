@@ -3,11 +3,19 @@ const app = require('./app');
 const db = require("./models");
 
 
-const checkJwt = auth({
-    audience: 'http://app-238342ae-111e-4650-a050-cb6e75802a39.cleverapps.io/',
-    issuerBaseURL: `https://dev-5e00y2tf.us.auth0.com/`,
+var jwtCheck = jwt({
+    secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: 'https://dev-5e00y2tf.us.auth0.com/.well-known/jwks.json'
+    }),
+    audience: 'https://ubeer-app.herokuapp.com/',
+    issuer: 'https://dev-5e00y2tf.us.auth0.com/',
+    algorithms: ['RS256']
 });
 
+app.use(jwtCheck);
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
 });
