@@ -8,9 +8,7 @@ const checkJwt = auth({
     issuerBaseURL: `https://dev-5e00y2tf.us.auth0.com/`,
 });
 
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
+db.sequelize.sync();
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to Ubeer application." });
