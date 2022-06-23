@@ -22,11 +22,3 @@ test('Route Formats API...', async () => {
 
     expect(res.statusCode).toBe(200);
 });
-
-//
-test('Route Formats API...', async () => {
-    const res = await request(app)
-        .get('/api/formats')
-
-    expect(res.text).toBe('[]');
-});
